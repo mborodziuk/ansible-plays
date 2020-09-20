@@ -1,0 +1,35 @@
+---
+- hosts: database
+  become: yes
+  gather_facts: no
+  ignore_errors: yes
+
+  vars:
+    j2file1: /home/automation/plays/templates/server_list.j2
+  
+  tasks:
+  
+  - name: list hosts
+    shell: ansible all -i /home/automation/plays/inventory --list-host > "{{ j2file1 }}" 
+    delegate_to: localhost
+    register: local_process
+
+  - name: debug
+    debug:
+      msg: "{{ local_process }}"
+
+  - name: replace string
+    replace:
+      path: "{{ j2file1 }}"
+      regexp: '(.*)hosts(.*):$'
+      replace: ' '
+    delegate_to: localhost
+
+  - name: template
+    template:
+      src: "{{ j2file1 }}"
+      dest: /etc/server_list.txt
+      owner: automation
+      mode: 0600
+      setype: net_conf_t
+

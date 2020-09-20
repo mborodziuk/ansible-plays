@@ -1,0 +1,29 @@
+---
+# tasks file for sample-apache
+
+- name: instal packages
+  yum:
+    name:
+      - httpd
+      - mod_ssl
+      - php
+    state: present
+
+- name: firewall 
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  loop:
+    - http
+    - https
+  tags: firewall
+
+- name: index.html
+  template:
+    src: intex.html.j2
+    dest: /var/www/html/index.html
+
+
+

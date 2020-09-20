@@ -1,0 +1,28 @@
+---
+- hosts: database
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: create a directory
+    file:
+      path: /mnt/mysql_backups
+      state: directory
+  
+  - name: touch a file
+    file:
+      path: /mnt/mysql_backups/database_list.txt
+      state: touch
+
+  - name: Copy using the 'content' for inline data
+    copy:
+      content: 'dev,test,qa,prod'
+      dest: /mnt/mysql_backups/database_list.txt
+
+  - name: Compress file
+    archive:
+      path: /mnt/mysql_backups/database_list.txt
+      dest: /mnt/mysql_backups/archive.gz
+
+

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - debug:
+      msg: "Server {{ inventory_hostname }} memory has less than 2048MB"
+    when:  ansible_memtotal_mb  < 2048
+
+  - debug:
+      vm.swappiness: 10
+    when:  ansible_memtotal_mb  > 2048
+

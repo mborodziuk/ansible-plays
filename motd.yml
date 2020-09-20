@@ -1,0 +1,33 @@
+---
+- hosts: all
+  remote_user: automation
+  #become: yes
+  
+  tasks: 
+  - name: remove motd file 
+    file:
+      path: /etc/motd
+      state: absent
+
+  - name: Put the Proxy text to motd file
+    lineinfile:
+      path:  /etc/motd
+      line: 'Welcome to HAProxy server'
+      create: yes
+    when: inventory_hostname in groups['proxy']
+
+  - name: Put the Proxy text to motd file
+    lineinfile:
+      path:  /etc/motd
+      line: 'Welcome to Apache server'
+      create: yes
+    when: inventory_hostname in groups['webservers']
+
+
+  - name: Put the Proxy text to motd file
+    lineinfile:
+      path:  /etc/motd
+      line: 'Welcome to MySQL server'
+      create: yes
+    when: inventory_hostname in groups['database']
+

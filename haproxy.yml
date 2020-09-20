@@ -1,0 +1,9 @@
+---
+- hosts: proxy
+  become: yes
+
+  roles:
+  - geerlingguy.haproxy
+  
+   
+

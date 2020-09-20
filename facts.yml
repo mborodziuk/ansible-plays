@@ -1,0 +1,30 @@
+---
+- hosts: database
+  become: yes
+#  gather_facts: no
+
+  tasks:
+
+  - name: create a directory
+    file:
+      path: /etc/ansible/facts.d
+      state: directory
+
+  - name: touch a file
+    file:
+      path: /etc/ansible/facts.d/custom.fact
+      state: touch
+
+  - name: blockinfile
+    blockinfile:
+      path: /etc/ansible/facts.d/custom.fact
+      block: |
+        [sample_exam]
+        server_role=mysql
+
+  - name: debug
+    debug:
+      msg: "{{ ansible_local.custom.sample_exam }}"
+
+          
+

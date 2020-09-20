@@ -1,0 +1,22 @@
+---
+- hosts: all
+  #remote_user: automation
+  become: yes
+  gather_facts: no
+    
+  tasks: 
+  - name: remove motd file 
+    file:
+      path: /etc/motd
+      state: absent
+
+  - name: Put the Proxy text to motd file
+    lineinfile:
+      path:  /etc/motd
+      line: "Welcome to {{ motd }} server"
+      create: yes
+  
+  - name: print motd
+    debug:
+      msg: "Welcome to {{ motd }} server"
+

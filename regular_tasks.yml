@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: Cron with date command as  a job
+    cron:
+      name: "Append actual date to time.log"
+      minute: "0"
+      hour: "*"
+      # If we want to remove crone job we can use state: absent
+      #state: absent
+      job: "/bin/date >> /var/log/time.log"
+    when: inventory_hostname in groups['proxy']
+
