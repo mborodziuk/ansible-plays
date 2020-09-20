@@ -1,29 +1,8 @@
 ---
 # handlers file for sample-mysql
 
-- name: firewalld2
-  firewalld:
-    port: 3306/tcp
-    permanent: yes
-    state: enabled
-
-- name: firewalld1
-  service:
-    name: firewalld
-    state: started
-
-- name: mysql1
-  mysql_user:
-    name: root
-    password: "{{ database_password }}"
-
-- name: mysql2
+- name: RestartMySql
   service:
     name: mysql
-    state: started
-
-#- name: template
-#  template:
-#    src: my.cnf.j2
-#    dest: /etc/my.cnf
+    state: restarted
 

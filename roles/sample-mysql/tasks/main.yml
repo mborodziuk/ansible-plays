@@ -1,16 +1,16 @@
 ---
 # tasks file for sample-mysql
 
-# The handlers will run when forced even if there's a failure..
-# However in this case, there is no failure, what's happening is there is no notification to that handler..
-# Without a notification, handlers won't run even if force_handlers is set.
-# We need changed_when : true to force handlers even if firewalld or mysql are already installed      
-
-
-#- name: install parted
-#  yum:
-#    name: parted
-#    state: present
+- name: Installing packages
+  yum:
+    name:
+    - parted
+    - python
+    - MySQL-python
+    - firewalld
+    - mysql-community-server
+    state: present
+  tags: install
 
 #- name: Create a new primary partition for LVM
 #  parted:
@@ -47,34 +47,49 @@
 #     state: present
                       
           
-- name: install firewalld
-  yum:
-    name: firewalld
-    state: present
-  changed_when: true
-  notify:  
-  - firewalld1
-  - firewalld2
-    
-- name: install mysql
-  yum:
-    name: mysql-community-server
-    state: present
-  changed_when: true
-  notify:
-  - mysql1
-  - mysql2
+- name: Starting services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+  - firewalld
+  - mysql
 
-- name: template
+
+- name: Open ports on firewall
+  firewalld:
+    port: 3306/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
+
+
+- name: Adding root user to MySql
+  mysql_user:
+    name: root
+    password: "{{ database_password }}"
+
+
+- name: Adding template to my.cnf
   template:
     src: my.cnf.j2
     dest: /etc/my.cnf
+  notify:
+  - RestartMySql
 
-- name: install python
-  yum:
-    name: "{{ item }}"
-    state: present
-  loop:
-  - python
-  - MySQL-python
-  
+
+# The handlers will run when forced even if there's a failure..
+# # However in this case, there is no failure, what's happening is there is no notification to that handler..
+# # Without a notification, handlers won't run even if force_handlers is set.
+# # We need changed_when : true to force handlers even if firewalld or mysql are already installed
+#
+#- name: install firewalld
+##  yum:
+##    name: firewalld
+##    state: present
+##  changed_when: true
+##  notify:
+##  - firewalld1
+##  - firewalld2
+#

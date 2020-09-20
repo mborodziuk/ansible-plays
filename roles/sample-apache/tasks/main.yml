@@ -20,6 +20,12 @@
     - https
   tags: firewall
 
+- name: Start firewalld 
+  service: 
+    name: firewalld 
+    enabled: yes 
+    state: started
+
 - name: index.html
   template:
     src: intex.html.j2

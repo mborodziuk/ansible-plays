@@ -11626,3 +11626,46 @@ sre_constants.error: nothing to repeat
 2020-09-19 20:44:19,414 p=15433 u=automation |  ansible5.hl.local | CHANGED | rc=0 >>
 -rw-------. 1 automation root 90 09-19 20:42 /etc/server_list.txt
 
+2020-09-20 12:18:02,191 p=16420 u=automation |  ERROR! Attempting to decrypt but no vault secrets found
+2020-09-20 12:19:15,562 p=16446 u=automation |   [WARNING]: Found variable using reserved name: force_handlers
+
+2020-09-20 12:19:15,563 p=16446 u=automation |  PLAY [database] **************************************************************************************************************
+2020-09-20 12:19:15,576 p=16446 u=automation |  TASK [Gathering Facts] *******************************************************************************************************
+2020-09-20 12:19:42,057 p=16446 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 12:19:42,082 p=16446 u=automation |  TASK [sample-mysql : Installing packages] ************************************************************************************
+2020-09-20 12:19:42,928 p=16446 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 12:19:42,950 p=16446 u=automation |  TASK [sample-mysql : Starting services] **************************************************************************************
+2020-09-20 12:19:43,808 p=16446 u=automation |  ok: [ansible5.hl.local] => (item=firewalld)
+2020-09-20 12:19:44,219 p=16446 u=automation |  ok: [ansible5.hl.local] => (item=mysql)
+2020-09-20 12:19:44,241 p=16446 u=automation |  TASK [sample-mysql : Open ports on firewall] *********************************************************************************
+2020-09-20 12:19:45,149 p=16446 u=automation |  changed: [ansible5.hl.local]
+2020-09-20 12:19:45,173 p=16446 u=automation |  TASK [sample-mysql : Adding root user to MySql] ******************************************************************************
+2020-09-20 12:19:45,740 p=16446 u=automation |  fatal: [ansible5.hl.local]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, \"Access denied for user 'root'@'localhost' (using password: NO)\")"}
+2020-09-20 12:19:45,742 p=16446 u=automation |  	to retry, use: --limit @/home/automation/plays/mysql.retry
+
+2020-09-20 12:19:45,742 p=16446 u=automation |  PLAY RECAP *******************************************************************************************************************
+2020-09-20 12:19:45,742 p=16446 u=automation |  ansible5.hl.local          : ok=4    changed=1    unreachable=0    failed=1   
+2020-09-20 12:59:51,689 p=16514 u=automation |   [WARNING]: Found variable using reserved name: force_handlers
+
+2020-09-20 12:59:51,690 p=16514 u=automation |  PLAY [database] *****************************************************************************************************************************
+2020-09-20 12:59:51,704 p=16514 u=automation |  TASK [Gathering Facts] **********************************************************************************************************************
+2020-09-20 13:00:16,150 p=16514 u=automation |   [ERROR]: User interrupted execution
+
+2020-09-20 13:00:21,393 p=16533 u=automation |   [WARNING]: Found variable using reserved name: force_handlers
+
+2020-09-20 13:00:21,394 p=16533 u=automation |  PLAY [database] *****************************************************************************************************************************
+2020-09-20 13:00:21,407 p=16533 u=automation |  TASK [Gathering Facts] **********************************************************************************************************************
+2020-09-20 13:00:42,481 p=16533 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 13:00:42,506 p=16533 u=automation |  TASK [sample-mysql : Installing packages] ***************************************************************************************************
+2020-09-20 13:00:43,350 p=16533 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 13:00:43,375 p=16533 u=automation |  TASK [sample-mysql : Starting services] *****************************************************************************************************
+2020-09-20 13:00:44,253 p=16533 u=automation |  ok: [ansible5.hl.local] => (item=firewalld)
+2020-09-20 13:00:44,663 p=16533 u=automation |  ok: [ansible5.hl.local] => (item=mysql)
+2020-09-20 13:00:44,685 p=16533 u=automation |  TASK [sample-mysql : Open ports on firewall] ************************************************************************************************
+2020-09-20 13:00:45,587 p=16533 u=automation |  changed: [ansible5.hl.local]
+2020-09-20 13:00:45,611 p=16533 u=automation |  TASK [sample-mysql : Adding root user to MySql] *********************************************************************************************
+2020-09-20 13:00:46,162 p=16533 u=automation |  fatal: [ansible5.hl.local]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, \"Access denied for user 'root'@'localhost' (using password: NO)\")"}
+2020-09-20 13:00:46,167 p=16533 u=automation |  	to retry, use: --limit @/home/automation/plays/mysql.retry
+
+2020-09-20 13:00:46,167 p=16533 u=automation |  PLAY RECAP **********************************************************************************************************************************
+2020-09-20 13:00:46,167 p=16533 u=automation |  ansible5.hl.local          : ok=4    changed=1    unreachable=0    failed=1   
