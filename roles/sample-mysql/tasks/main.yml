@@ -64,9 +64,14 @@
     immediate: yes
     state: enabled
 
+#Both login_password and login_user are required when you are passing credentials. If none are present, 
+#the module will attempt to read the credentials from ~/.my.cnf, and finally fall back to using the 
+#MySQL default login of ‘root’ with no password.
 
 - name: Adding root user to MySql
   mysql_user:
+    login_user: root
+    login_password: "{{ database_password }}"
     name: root
     password: "{{ database_password }}"
 
@@ -74,7 +79,7 @@
 - name: Adding template to my.cnf
   template:
     src: my.cnf.j2
-    dest: /etc/my.cnf
+    dest: /root/.my.cnf
   notify:
   - RestartMySql
 

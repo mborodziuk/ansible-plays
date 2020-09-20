@@ -11669,3 +11669,60 @@ sre_constants.error: nothing to repeat
 
 2020-09-20 13:00:46,167 p=16533 u=automation |  PLAY RECAP **********************************************************************************************************************************
 2020-09-20 13:00:46,167 p=16533 u=automation |  ansible5.hl.local          : ok=4    changed=1    unreachable=0    failed=1   
+2020-09-20 13:59:11,928 p=16821 u=automation |  PLAY [database] *************************************************************************************************************************************************************
+2020-09-20 13:59:11,942 p=16821 u=automation |  TASK [Gathering Facts] ******************************************************************************************************************************************************
+2020-09-20 13:59:38,472 p=16821 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 13:59:38,494 p=16821 u=automation |  TASK [sample-mysql : Installing packages] ***********************************************************************************************************************************
+2020-09-20 13:59:39,324 p=16821 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 13:59:39,348 p=16821 u=automation |  TASK [sample-mysql : Starting services] *************************************************************************************************************************************
+2020-09-20 13:59:40,172 p=16821 u=automation |  ok: [ansible5.hl.local] => (item=firewalld)
+2020-09-20 13:59:40,569 p=16821 u=automation |  ok: [ansible5.hl.local] => (item=mysql)
+2020-09-20 13:59:40,592 p=16821 u=automation |  TASK [sample-mysql : Open ports on firewall] ********************************************************************************************************************************
+2020-09-20 13:59:41,479 p=16821 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 13:59:41,503 p=16821 u=automation |  TASK [sample-mysql : Adding root user to MySql] *****************************************************************************************************************************
+2020-09-20 13:59:42,032 p=16821 u=automation |  fatal: [ansible5.hl.local]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, \"Access denied for user 'root'@'localhost' (using password: NO)\")"}
+2020-09-20 13:59:42,035 p=16821 u=automation |  	to retry, use: --limit @/home/automation/plays/mysql.retry
+
+2020-09-20 13:59:42,035 p=16821 u=automation |  PLAY RECAP ******************************************************************************************************************************************************************
+2020-09-20 13:59:42,035 p=16821 u=automation |  ansible5.hl.local          : ok=4    changed=0    unreachable=0    failed=1   
+2020-09-20 14:25:30,768 p=16903 u=automation |  PLAY [database] *************************************************************************************************************************************************************
+2020-09-20 14:25:30,782 p=16903 u=automation |  TASK [Gathering Facts] ******************************************************************************************************************************************************
+2020-09-20 14:25:57,327 p=16903 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 14:25:57,350 p=16903 u=automation |  TASK [sample-mysql : Installing packages] ***********************************************************************************************************************************
+2020-09-20 14:25:58,225 p=16903 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 14:25:58,249 p=16903 u=automation |  TASK [sample-mysql : Starting services] *************************************************************************************************************************************
+2020-09-20 14:25:59,143 p=16903 u=automation |  ok: [ansible5.hl.local] => (item=firewalld)
+2020-09-20 14:25:59,596 p=16903 u=automation |  ok: [ansible5.hl.local] => (item=mysql)
+2020-09-20 14:25:59,623 p=16903 u=automation |  TASK [sample-mysql : Open ports on firewall] ********************************************************************************************************************************
+2020-09-20 14:26:00,570 p=16903 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 14:26:00,597 p=16903 u=automation |  TASK [sample-mysql : Adding root user to MySql] *****************************************************************************************************************************
+2020-09-20 14:26:01,199 p=16903 u=automation |  fatal: [ansible5.hl.local]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, \"Access denied for user 'root'@'localhost' (using password: NO)\")"}
+2020-09-20 14:26:01,202 p=16903 u=automation |  	to retry, use: --limit @/home/automation/plays/mysql.retry
+
+2020-09-20 14:26:01,202 p=16903 u=automation |  PLAY RECAP ******************************************************************************************************************************************************************
+2020-09-20 14:26:01,202 p=16903 u=automation |  ansible5.hl.local          : ok=4    changed=0    unreachable=0    failed=1   
+2020-09-20 14:42:22,507 p=16969 u=automation |   [WARNING]: module mysql not found in: /home/automation/.ansible/plugins/modules:/usr/share/ansible/plugins/modules:/usr/lib/python2.7/site-
+packages/ansible/modules
+
+2020-09-20 15:01:43,014 p=17062 u=automation |  PLAY [database] *************************************************************************************************************************************************************
+2020-09-20 15:01:43,028 p=17062 u=automation |  TASK [Gathering Facts] ******************************************************************************************************************************************************
+2020-09-20 15:02:09,588 p=17062 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 15:02:09,614 p=17062 u=automation |  TASK [sample-mysql : Installing packages] ***********************************************************************************************************************************
+2020-09-20 15:02:10,511 p=17062 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 15:02:10,534 p=17062 u=automation |  TASK [sample-mysql : Starting services] *************************************************************************************************************************************
+2020-09-20 15:02:11,470 p=17062 u=automation |  ok: [ansible5.hl.local] => (item=firewalld)
+2020-09-20 15:02:11,939 p=17062 u=automation |  ok: [ansible5.hl.local] => (item=mysql)
+2020-09-20 15:02:11,970 p=17062 u=automation |  TASK [sample-mysql : Open ports on firewall] ********************************************************************************************************************************
+2020-09-20 15:02:12,937 p=17062 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 15:02:12,965 p=17062 u=automation |  TASK [sample-mysql : Adding root user to MySql] *****************************************************************************************************************************
+2020-09-20 15:02:13,601 p=17062 u=automation |  ok: [ansible5.hl.local]
+2020-09-20 15:02:13,626 p=17062 u=automation |  TASK [sample-mysql : Adding template to my.cnf] *****************************************************************************************************************************
+2020-09-20 15:02:14,603 p=17062 u=automation |  changed: [ansible5.hl.local]
+2020-09-20 15:02:14,624 p=17062 u=automation |  TASK [debug] ****************************************************************************************************************************************************************
+2020-09-20 15:02:14,669 p=17062 u=automation |  ok: [ansible5.hl.local] => {
+    "msg": "devops"
+}
+2020-09-20 15:02:14,674 p=17062 u=automation |  RUNNING HANDLER [sample-mysql : RestartMySql] *******************************************************************************************************************************
+2020-09-20 15:02:18,173 p=17062 u=automation |  changed: [ansible5.hl.local]
+2020-09-20 15:02:18,175 p=17062 u=automation |  PLAY RECAP ******************************************************************************************************************************************************************
+2020-09-20 15:02:18,175 p=17062 u=automation |  ansible5.hl.local          : ok=8    changed=2    unreachable=0    failed=0   
